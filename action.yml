@@ -1,0 +1,17 @@
+name: terraform-monorepo-action
+description: Marks checks as successful if no changes occurred to specified files.
+author: DREST LTD
+inputs:
+  token:
+    description: GitHub token. Defaults to secrets.GITHUB_TOKEN.
+    required: false
+    default: ${{ github.token }}
+  paths:
+    description: List of path globs to check for changes.
+    required: true
+  checks:
+    description: List of checks to mark as successful.
+    required: true
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
