@@ -49,7 +49,7 @@ function getChangedFiles(token) {
         if (response.status !== 200) {
             throw new Error(http_status_codes_1.getReasonPhrase(response.status));
         }
-        if (response.data.status !== 'ahead') {
+        if (response.data.status === 'behind') {
             throw new Error(`HEAD ${response.data.status}`);
         }
         return ((_e = response.data.files) === null || _e === void 0 ? void 0 : _e.map(({ filename }) => filename)) || [];
