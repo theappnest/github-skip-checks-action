@@ -143,14 +143,16 @@ exports.skipChecks = void 0;
 const github_1 = __nccwpck_require__(5438);
 const http_status_codes_1 = __nccwpck_require__(2828);
 function skipChecks(token, checks) {
-    var _a, _b;
+    var _a, _b, _c, _d;
     return __awaiter(this, void 0, void 0, function* () {
         const octokit = github_1.getOctokit(token);
         let head;
         switch (github_1.context.eventName) {
             case 'pull_request_target':
-            case 'pull_request':
                 head = (_b = (_a = github_1.context.payload.pull_request) === null || _a === void 0 ? void 0 : _a.head) === null || _b === void 0 ? void 0 : _b.sha;
+                break;
+            case 'pull_request':
+                head = (_d = (_c = github_1.context.payload.pull_request) === null || _c === void 0 ? void 0 : _c.head) === null || _d === void 0 ? void 0 : _d.sha;
                 break;
             case 'push':
                 head = github_1.context.payload.after;
