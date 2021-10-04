@@ -148,6 +148,7 @@ function skipChecks(token, checks) {
         const octokit = github_1.getOctokit(token);
         let head;
         switch (github_1.context.eventName) {
+            case 'pull_request_target':
             case 'pull_request':
                 head = (_b = (_a = github_1.context.payload.pull_request) === null || _a === void 0 ? void 0 : _a.head) === null || _b === void 0 ? void 0 : _b.sha;
                 break;
