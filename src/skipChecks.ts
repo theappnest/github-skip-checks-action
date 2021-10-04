@@ -10,6 +10,7 @@ export async function skipChecks(
   let head: string | undefined
 
   switch (context.eventName) {
+    case 'pull_request_target':
     case 'pull_request':
       head = context.payload.pull_request?.head?.sha
       break
