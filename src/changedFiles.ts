@@ -11,7 +11,7 @@ export async function getChangedFiles(token: string): Promise<string[]> {
     case 'pull_request_target':
       base = context.payload.pull_request?.base?.sha
       head = context.payload.pull_request?.head?.sha
-      break 
+      break
     case 'pull_request':
       base = context.payload.pull_request?.base?.sha
       head = context.payload.pull_request?.head?.sha
