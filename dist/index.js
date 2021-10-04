@@ -20,15 +20,19 @@ exports.getChangedFiles = void 0;
 const github_1 = __nccwpck_require__(5438);
 const http_status_codes_1 = __nccwpck_require__(2828);
 function getChangedFiles(token) {
-    var _a, _b, _c, _d, _e;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
     return __awaiter(this, void 0, void 0, function* () {
         const octokit = github_1.getOctokit(token);
         let base;
         let head;
         switch (github_1.context.eventName) {
-            case 'pull_request':
+            case 'pull_request_target':
                 base = (_b = (_a = github_1.context.payload.pull_request) === null || _a === void 0 ? void 0 : _a.base) === null || _b === void 0 ? void 0 : _b.sha;
                 head = (_d = (_c = github_1.context.payload.pull_request) === null || _c === void 0 ? void 0 : _c.head) === null || _d === void 0 ? void 0 : _d.sha;
+                break;
+            case 'pull_request':
+                base = (_f = (_e = github_1.context.payload.pull_request) === null || _e === void 0 ? void 0 : _e.base) === null || _f === void 0 ? void 0 : _f.sha;
+                head = (_h = (_g = github_1.context.payload.pull_request) === null || _g === void 0 ? void 0 : _g.head) === null || _h === void 0 ? void 0 : _h.sha;
                 break;
             case 'push':
                 base = github_1.context.payload.before;
@@ -52,7 +56,7 @@ function getChangedFiles(token) {
         if (response.data.status === 'behind') {
             throw new Error(`HEAD ${response.data.status}`);
         }
-        return ((_e = response.data.files) === null || _e === void 0 ? void 0 : _e.map(({ filename }) => filename)) || [];
+        return ((_j = response.data.files) === null || _j === void 0 ? void 0 : _j.map(({ filename }) => filename)) || [];
     });
 }
 exports.getChangedFiles = getChangedFiles;
