@@ -11,6 +11,8 @@ export async function skipChecks(
 
   switch (context.eventName) {
     case 'pull_request_target':
+      head = context.payload.pull_request?.head?.sha
+      break
     case 'pull_request':
       head = context.payload.pull_request?.head?.sha
       break
